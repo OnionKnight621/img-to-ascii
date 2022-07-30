@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div id="settingsPart">
+        <!-- <fieldset>
+          <legend>Choose mode</legend>
+          <div>
+            <input
+              type="radio"
+              id="chooseImg"
+              name="drone"
+              value="chooseImg"
+              checked
+            />
+            <label for="chooseImg">Image</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="chooseVideo"
+              name="drone"
+              value="chooseVideo"
+            />
+            <label for="chooseVideo">Video</label>
+          </div>
+        </fieldset> -->
+        <fieldset>
+          <legend for="loadFile">Select a file (img \ vid)</legend>
+          <input type="file" id="loadFile" name="loadFile" /><br />
+          <div id="content">
+            <video
+              src="./assets/doggo.mp4"
+              id="vidos"
+              controls="false"
+              width="160"
+              height="160"
+            ></video>
+            <img
+              src="./assets/catto_x256.jpg"
+              alt=""
+              id="myImg"
+              width="160"
+              height="160"
+            />
+          </div>
+          <span id="someMessage"></span>
+        </fieldset>
+        <fieldset>
+          <legend>Settings</legend>
+          <label for="pickSymbol">Select a symbol:</label>
+          <input
+            type="text"
+            id="pickSymbol"
+            name="pickSymbol"
+            value="QWE"
+          /><br />
+          <label for="isDictionary">Use symbols as dictionary:</label>
+          <input
+            type="checkbox"
+            id="isDictionary"
+            name="isDictionary"
+            checked="true"
+          /><br />
+          <label for="chooseBg">Background:</label>
+          <input type="color" id="chooseBg" name="chooseBg" /><br />
+          <label for="setZoom">Zoom:</label>
+          <input type="number" id="setZoom" name="setZoom" value="14" /><br />
+          <label for="setHeight">Height:</label>
+          <input type="number" id="setHeight" name="setHeight" value="64" />
+          <!-- <label for="isNativeHeight">Native:</label>
+          <input
+            type="checkbox"
+            id="isNativeHeight"
+            name="isNativeHeight"
+            checked="true"
+          /> -->
+          <br />
+          <label for="setWidth">Width:</label>
+          <input type="number" id="setWidth" name="setWidth" value="64" />
+          <!-- <label for="isNativeWidth">Native:</label>
+          <input
+            type="checkbox"
+            id="isNativeWidth"
+            name="isNativeWidth"
+            checked="true"
+          /> -->
+        </fieldset>
+        <button id="doit">Doit!</button>
+      </div>
+      <div id="renderPart">
+        <canvas id="mainCanvas"></canvas>
+        <canvas id="resultCanvas"></canvas>
+      </div>
+      <div id="imaga"></div>
+    </main>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
