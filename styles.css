@@ -13,7 +13,45 @@ main {
   align-content: center; /* for multi-line flex container */
 }
 video {
-  /* display: none; */
+  display: initial;
+}
+fieldset {
+  border: 1px solid wheat;
+  border-radius: 0.2rem;
+}
+input[type=file]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+input[type=file] {
+  background-color: inherit;
+  color: wheat;
+  border: 1px solid wheat;
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+}
+input[type=file]:hover {
+  color: cyan;
+  border: 1px solid cyan;
+}
+input[type=text],
+input[type=number],
+input[type=color] {
+  background-color: inherit;
+  color: wheat;
+  border: 1px solid wheat;
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+  width: 5rem;
+}
+input[type=color] {
+  padding: 0.1rem;
+}
+
+input[type=text]:hover,
+input[type=number]:hover,
+input[type=color]:hover {
+  color: cyan;
+  border: 1px solid cyan;
 }
 
 #settingsPart {
@@ -21,7 +59,6 @@ video {
 }
 #renderPart {
   padding-left: 1rem;
-  border-left: 2px solid wheat;
 }
 #mainCanvas {
   display: none;
@@ -30,10 +67,18 @@ video {
   margin-top: 0.5rem;
 }
 #myImg {
-  /* width: 32px;
-  height: 32px; */
   display: initial;
 }
 #doit {
-  margin: 0.75rem;
+  margin-left: 0.15rem;
+  margin-top: 0.5rem;
+  background-color: inherit;
+  color: wheat;
+  border: 1px solid wheat;
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+}
+#doit:hover {
+  color: cyan;
+  border: 1px solid cyan;
 }
