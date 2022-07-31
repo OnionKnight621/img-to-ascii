@@ -36,6 +36,7 @@ input[type="file"] {
   border: 1px solid wheat;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
+  width: 18rem;
 }
 input[type="file"]:hover {
   color: cyan;
@@ -67,6 +68,10 @@ select {
   border: 1px solid wheat;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
+}
+select:hover {
+  color: cyan;
+  border: 1px solid cyan;
 }
 select option {
   background-color: darkslategrey;
