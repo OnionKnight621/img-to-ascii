@@ -9,9 +9,15 @@ const someMessage = document.getElementById("someMessage");
 const video = document.getElementById("vidos");
 const setHeight = document.getElementById("setHeight");
 const setWidtht = document.getElementById("setWidth");
+const mode = document.getElementById('setMode');
 
 const mainCanvas = document.getElementById("mainCanvas");
 const resultCanvas = document.getElementById("resultCanvas");
+
+const modes = {
+  random: "random",
+  consistent: "consistent",
+};
 
 window.onload = function (e) {
   renderImgInCanvas({
@@ -22,6 +28,7 @@ window.onload = function (e) {
     image: image,
     iHeight: setHeight.value,
     iWidth: setWidtht.value,
+    mode: mode.value,
   });
 };
 
@@ -35,6 +42,7 @@ document.addEventListener("keyup", function (event) {
       image: image,
       iHeight: setHeight.value,
       iWidth: setWidtht.value,
+      mode: mode.value,
     });
   }
 });
@@ -47,7 +55,7 @@ loadedImg.addEventListener("change", function (e) {
 
     someMessage.innerHTML = "";
 
-    if (type.split('/')[0] === "image") {
+    if (type.split("/")[0] === "image") {
       image.style.display = "initial";
 
       if (FileReader) {
@@ -61,7 +69,7 @@ loadedImg.addEventListener("change", function (e) {
       image.style.display = "none";
     }
 
-    if (type.split('/')[0] === "video") {
+    if (type.split("/")[0] === "video") {
       video.style.display = "initial";
 
       video.addEventListener("loadedmetadata", function (e) {
@@ -87,6 +95,7 @@ processBtn.addEventListener("click", function (e) {
     image: image,
     iHeight: setHeight.value,
     iWidth: setWidtht.value,
+    mode: mode.value,
   });
 });
 
@@ -104,6 +113,7 @@ video.addEventListener(
           image: $this,
           iHeight: setHeight.value,
           iWidth: setWidtht.value,
+          mode: mode.value,
         });
         setTimeout(loop, 1000 / 30); // drawing at 30fps
       }
@@ -116,6 +126,10 @@ function pickRandom(dictionary) {
   return dictionary[Math.floor(Math.random() * dictionary.length)];
 }
 
+function pickConsistent(dictionary, i) {
+  return dictionary[i];
+}
+
 export function renderImgInCanvas({
   zoom,
   symbol,
@@ -124,6 +138,7 @@ export function renderImgInCanvas({
   image,
   iHeight,
   iWidth,
+  mode,
 }) {
   const width = iWidth || 64;
   const height = iHeight || 64;
@@ -161,6 +176,7 @@ export function renderImgInCanvas({
   rCtx.font = `${wRatio * 1.3}px Arial`;
   rCtx.textAlign = "center";
 
+  let k = 0;
   for (let i = 0; i < width; i++) {
     for (let j = 0; j < height; j++) {
       const pxIndex = (i + j * width) * 4;
@@ -176,7 +192,13 @@ export function renderImgInCanvas({
       const y = j * hRatio + hRatio * shift + hRatio / 2;
 
       if (isDictionary) {
-        rCtx.fillText(pickRandom(dict), x, y);
+        if (mode === modes.consistent) {
+          if (k === dict.length) k = 0;
+          rCtx.fillText(pickConsistent(dict, k), x, y);
+          k++;
+        } else {
+          rCtx.fillText(pickRandom(dict), x, y);
+        }
       } else {
         rCtx.fillText(pixelReplacement, x, y);
       }

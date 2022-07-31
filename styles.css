@@ -12,6 +12,14 @@ main {
   align-items: center; /* for single line flex container */
   align-content: center; /* for multi-line flex container */
 }
+
+@media (max-width: 1200px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 video {
   display: initial;
 }
@@ -19,23 +27,23 @@ fieldset {
   border: 1px solid wheat;
   border-radius: 0.2rem;
 }
-input[type=file]::-webkit-file-upload-button {
+input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
-input[type=file] {
+input[type="file"] {
   background-color: inherit;
   color: wheat;
   border: 1px solid wheat;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
 }
-input[type=file]:hover {
+input[type="file"]:hover {
   color: cyan;
   border: 1px solid cyan;
 }
-input[type=text],
-input[type=number],
-input[type=color] {
+input[type="text"],
+input[type="number"],
+input[type="color"] {
   background-color: inherit;
   color: wheat;
   border: 1px solid wheat;
@@ -43,25 +51,40 @@ input[type=color] {
   padding: 0.3rem 1rem;
   width: 5rem;
 }
-input[type=color] {
+input[type="color"] {
   padding: 0.1rem;
 }
 
-input[type=text]:hover,
-input[type=number]:hover,
-input[type=color]:hover {
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="color"]:hover {
   color: cyan;
   border: 1px solid cyan;
 }
+select {
+  background-color: inherit;
+  color: wheat;
+  border: 1px solid wheat;
+  border-radius: 0.2rem;
+  padding: 0.3rem 1rem;
+}
+select option {
+  background-color: darkslategrey;
+  color: wheat;
+}
 
 #settingsPart {
-  padding-right: 1rem;
+  padding: 1rem;
 }
 #renderPart {
   padding-left: 1rem;
 }
+#settings div {
+  padding: 0.2rem;
+}
 #mainCanvas {
   display: none;
+  transform: rotate(90deg);
 }
 #content {
   margin-top: 0.5rem;
