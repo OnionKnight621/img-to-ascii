@@ -9,7 +9,7 @@ const someMessage = document.getElementById("someMessage");
 const video = document.getElementById("vidos");
 const setHeight = document.getElementById("setHeight");
 const setWidtht = document.getElementById("setWidth");
-const mode = document.getElementById('setMode');
+const mode = document.getElementById("setMode");
 
 const mainCanvas = document.getElementById("mainCanvas");
 const resultCanvas = document.getElementById("resultCanvas");
@@ -115,7 +115,8 @@ video.addEventListener(
           iWidth: setWidtht.value,
           mode: mode.value,
         });
-        setTimeout(loop, 1000 / 30); // drawing at 30fps
+        // setTimeout(loop, 1000 / 30); // drawing at 30fps
+        window.requestAnimationFrame(loop); // drawing natively
       }
     })();
   },
