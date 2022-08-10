@@ -18,8 +18,6 @@ const cameraOptions = document.querySelector(".video-options>select");
 const loadStream = document.getElementById("loadStream");
 
 loadStream.onclick = async function (e) {
-  cameraOptions.innerHTML = await getCameraOptions(); //TODO: adequate support for multiple cams
-
   if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
     const updatedConstraints = {
       ...CONSTRAINTS,
@@ -38,16 +36,18 @@ loadStream.onclick = async function (e) {
   }
 };
 
-window.onload = function (e) {
+window.onload = async function (e) {
   if (
-    !"mediaDevices" in navigator ||
-    !"getUserMedia" in navigator.mediaDevices
+    "mediaDevices" in navigator &&
+    "getUserMedia" in navigator.mediaDevices
   ) {
-    cameraOptions.style.display = "none";
-    loadStream.style.display = "none";
-  } else {
     cameraOptions.style.display = "initial";
     loadStream.style.display = "initial";
+
+    cameraOptions.innerHTML = await getCameraOptions();
+  } else {
+    cameraOptions.style.display = "none";
+    loadStream.style.display = "none";
   }
 
   renderImgInCanvas({
