@@ -1,9 +1,5 @@
+import { MODES } from "./constants.js";
 import { pickConsistent, pickRandom } from "./utils.js";
-
-const modes = {
-  random: "random",
-  consistent: "consistent",
-};
 
 const mainCanvas = document.getElementById("mainCanvas");
 const resultCanvas = document.getElementById("resultCanvas");
@@ -70,7 +66,7 @@ export function renderImgInCanvas({
       const y = j * hRatio + hRatio * shift + hRatio / 2;
 
       if (isDictionary) {
-        if (mode === modes.consistent) {
+        if (mode === MODES.consistent) {
           if (k === dict.length) k = 0;
           rCtx.fillText(pickConsistent(dict, k), x, y);
           k++;

@@ -1,4 +1,6 @@
+import { CONSTRAINTS } from "./constants.js";
 import { renderImgInCanvas } from "./renderImage.js";
+import { getCameraOptions } from "./utils.js";
 
 const loadedImg = document.getElementById("loadFile");
 const symbolToRender = document.getElementById("pickSymbol");
@@ -12,8 +14,42 @@ const video = document.getElementById("vidos");
 const setHeight = document.getElementById("setHeight");
 const setWidtht = document.getElementById("setWidth");
 const mode = document.getElementById("setMode");
+const cameraOptions = document.querySelector(".video-options>select");
+const loadStream = document.getElementById("loadStream");
+
+loadStream.onclick = async function (e) {
+  cameraOptions.innerHTML = await getCameraOptions(); //TODO: adequate support for multiple cams
+
+  if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
+    const updatedConstraints = {
+      ...CONSTRAINTS,
+      deviceId: {
+        exact: cameraOptions.value,
+      },
+    };
+
+    const stream = await navigator.mediaDevices.getUserMedia(
+      updatedConstraints
+    );
+
+    video.srcObject = stream;
+    video.play();
+    return;
+  }
+};
 
 window.onload = function (e) {
+  if (
+    !"mediaDevices" in navigator ||
+    !"getUserMedia" in navigator.mediaDevices
+  ) {
+    cameraOptions.style.display = "none";
+    loadStream.style.display = "none";
+  } else {
+    cameraOptions.style.display = "initial";
+    loadStream.style.display = "initial";
+  }
+
   renderImgInCanvas({
     zoom: Math.abs(setZoom.value),
     symbol: symbolToRender.value,
@@ -50,8 +86,6 @@ loadedImg.addEventListener("change", function (e) {
     someMessage.innerHTML = "";
 
     if (type.split("/")[0] === "image") {
-      image.style.display = "initial";
-
       if (FileReader) {
         let fr = new FileReader();
         fr.onload = function () {
@@ -59,19 +93,13 @@ loadedImg.addEventListener("change", function (e) {
         };
         fr.readAsDataURL(file);
       }
-    } else {
-      image.style.display = "none";
     }
 
     if (type.split("/")[0] === "video") {
-      video.style.display = "initial";
-
       video.addEventListener("loadedmetadata", function (e) {
         console.log(video.videoWidth, video.videoHeight);
       });
       video.src = URL.createObjectURL(file);
-    } else {
-      video.style.display = "none";
     }
   } else {
     someMessage.innerHTML = "choose file";

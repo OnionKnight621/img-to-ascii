@@ -42,6 +42,7 @@ input[type="file"]:hover {
   color: cyan;
   border: 1px solid cyan;
 }
+button,
 input[type="text"],
 input[type="number"],
 input[type="color"] {
@@ -50,12 +51,13 @@ input[type="color"] {
   border: 1px solid wheat;
   border-radius: 0.2rem;
   padding: 0.3rem 1rem;
-  width: 5rem;
+  min-width: 5rem;
 }
 input[type="color"] {
   padding: 0.1rem;
 }
 
+button:hover,
 input[type="text"]:hover,
 input[type="number"]:hover,
 input[type="color"]:hover {
