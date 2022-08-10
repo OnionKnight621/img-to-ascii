@@ -8,19 +8,23 @@
     <title>Document</title>
   </head>
   <body class="container">
-    <main class="row">
+    <main>
       <div id="settingsPart">
         <fieldset>
           <legend for="loadFile">Select a file (img \ vid)</legend>
-          <input type="file" id="loadFile" name="loadFile" /><br />
-          <button id="loadStream" title="Play">Load camera stream</button>
-          <button id="stopStream" title="Stop">Stop camera stream</button>
+          <div>
+            <input type="file" id="loadFile" name="loadFile" />
+          </div>
+          <div class="item">
+            <button id="loadStream" title="Play">Load camera stream</button>
+            <button id="stopStream" title="Stop">Stop camera stream</button>
+          </div>
           <div class="video-options">
             <select name="" id="" class="custom-select">
               <option value="">Select camera</option>
             </select>
           </div>
-          <div id="content">
+          <div class="item" id="content">
             <video
               src="./assets/doggo.mp4"
               id="vidos"
@@ -40,12 +44,12 @@
         </fieldset>
         <fieldset id="settings">
           <legend>Settings</legend>
-          <div>
-            <label for="pickSymbol">Select a symbol:</label>
+          <div class="item">
+            <label for="pickSymbol">Select a symbol(s):</label>
             <input type="text" id="pickSymbol" name="pickSymbol" value="QWER" />
           </div>
-          <div>
-            <label for="isDictionary">Use symbols as dictionary:</label>
+          <div class="item">
+            <label for="isDictionary">Symbols as dictionary:</label>
             <input
               type="checkbox"
               id="isDictionary"
@@ -53,31 +57,28 @@
               checked="true"
             />
           </div>
-          <div>
+          <div class="item">
             <label for="setMode">Mode:</label>
             <select name="mode" id="setMode">
-              <option value="random" selected>random</option>
-              <option value="consistent">consistent</option>
+              <option value="random" selected>Random</option>
+              <option value="consistent">Consistent</option>
             </select>
           </div>
-          <div>
+          <div class="item">
             <label for="chooseBg">Background:</label>
             <input type="color" id="chooseBg" name="chooseBg" />
           </div>
-          <div>
-            <label for="setZoom">Zoom:</label>
+          <div class="item">
+            <label for="setZoom">Zoom (px per sym):</label>
             <input type="number" id="setZoom" name="setZoom" value="14" />
-            <span>(~px per sym)</span>
           </div>
-          <div>
-            <label for="setHeight">Height:</label>
+          <div class="item">
+            <label for="setHeight">Height (sym):</label>
             <input type="number" id="setHeight" name="setHeight" value="64" />
-            <span>(symbols)</span>
           </div>
-          <div>
-            <label for="setWidth">Width:</label>
+          <div class="item">
+            <label for="setWidth">Width (sym):</label>
             <input type="number" id="setWidth" name="setWidth" value="64" />
-            <span>(symbols)</span>
           </div>
         </fieldset>
         <button id="doit">Doit!</button>
