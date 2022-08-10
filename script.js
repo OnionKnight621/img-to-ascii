@@ -16,6 +16,7 @@ const setWidtht = document.getElementById("setWidth");
 const mode = document.getElementById("setMode");
 const cameraOptions = document.querySelector(".video-options>select");
 const loadStream = document.getElementById("loadStream");
+const stopStream = document.getElementById("stopStream");
 
 loadStream.onclick = async function (e) {
   if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
@@ -30,11 +31,18 @@ loadStream.onclick = async function (e) {
       updatedConstraints
     );
 
+    stopStream.style.display = "initial";
     video.srcObject = stream;
     video.play();
     return;
   }
 };
+
+stopStream.onclick = function (e) {
+  video.pause();
+  video.srcObject = null;
+  stopStream.style.display = "none";
+}
 
 window.onload = async function (e) {
   if (
@@ -49,6 +57,8 @@ window.onload = async function (e) {
     cameraOptions.style.display = "none";
     loadStream.style.display = "none";
   }
+
+  stopStream.style.display = "none";
 
   renderImgInCanvas({
     zoom: Math.abs(setZoom.value),
