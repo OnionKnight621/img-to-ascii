@@ -3,6 +3,7 @@ import { pickConsistent, pickRandom } from "./utils.js";
 
 const mainCanvas = document.getElementById("mainCanvas");
 const resultCanvas = document.getElementById("resultCanvas");
+const main = document.getElementsByTagName("main");
 
 export function renderImgInCanvas({
   zoom,
@@ -19,6 +20,12 @@ export function renderImgInCanvas({
   const zoomFactor = zoom;
   const pixelReplacement = symbol;
   const dict = symbol.replace(" ").split("");
+
+  if (zoom * iWidth > window.innerWidth / 1.3) {
+    main[0].style.flexDirection = "column";
+  } else {
+    main[0].style.flexDirection = "row";
+  }
 
   mainCanvas.width = width;
   mainCanvas.height = height;
