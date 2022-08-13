@@ -42,17 +42,15 @@ stopStream.onclick = function (e) {
   video.pause();
   video.srcObject = null;
   stopStream.style.display = "none";
-}
+};
 
 window.onload = async function (e) {
-  if (
-    "mediaDevices" in navigator &&
-    "getUserMedia" in navigator.mediaDevices
-  ) {
+  if ("mediaDevices" in navigator && "getUserMedia" in navigator.mediaDevices) {
     cameraOptions.style.display = "initial";
     loadStream.style.display = "initial";
-
-    cameraOptions.innerHTML = await getCameraOptions();
+    navigator.mediaDevices.getUserMedia({ video: true }).then(async (item) => {
+      cameraOptions.innerHTML = await getCameraOptions();
+    });
   } else {
     cameraOptions.style.display = "none";
     loadStream.style.display = "none";
