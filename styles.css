@@ -19,7 +19,7 @@ main {
   align-content: center; /* for multi-line flex container */
 }
 main > div {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 @media (max-width: 1200px) {
