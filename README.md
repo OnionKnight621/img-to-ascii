@@ -1,4 +1,5 @@
 # Redraw some images/videos via symbols
+# GH Pages: https://onionknight621.github.io/pixels-symbolizer/
 
 1. Choose source (image/video/stream from camera)
 2. Set some symbols (if multiple you can set `Symbols as dictionary` to `true` and check what happens)
