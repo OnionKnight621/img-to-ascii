@@ -39,9 +39,18 @@ loadStream.onclick = async function (e) {
 };
 
 stopStream.onclick = function (e) {
+  const stream = video.srcObject;
+  const tracks = stream.getTracks();
+
   video.pause();
+
+  tracks.forEach((track) => {
+    track.stop();
+  });
+
   video.srcObject = null;
   stopStream.style.display = "none";
+  navigator.mediaDevices.stopStream();
 };
 
 window.onload = async function (e) {
@@ -145,7 +154,6 @@ video.addEventListener(
           iWidth: setWidtht.value,
           mode: mode.value,
         });
-        // setTimeout(loop, 1000 / 30); // drawing at 30fps
         window.requestAnimationFrame(loop); // drawing natively
       }
     })();
