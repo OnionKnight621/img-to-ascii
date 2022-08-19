@@ -17,6 +17,7 @@ const mode = document.getElementById("setMode");
 const cameraOptions = document.querySelector(".video-options>select");
 const loadStream = document.getElementById("loadStream");
 const stopStream = document.getElementById("stopStream");
+const fpsCounter = document.getElementById("fps");
 
 loadStream.onclick = async function (e) {
   if ("mediaDevices" in navigator && navigator.mediaDevices.getUserMedia) {
@@ -138,6 +139,8 @@ processBtn.addEventListener("click", function (e) {
   });
 });
 
+let fps = 0;
+
 video.addEventListener(
   "play",
   function () {
@@ -154,9 +157,15 @@ video.addEventListener(
           iWidth: setWidtht.value,
           mode: mode.value,
         });
+        fps++;
         window.requestAnimationFrame(loop); // drawing natively
       }
     })();
   },
   0
 );
+
+setInterval(() => {
+  fpsCounter.innerHTML = fps;
+  fps = 0;
+}, 1000);

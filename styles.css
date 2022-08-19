@@ -94,6 +94,11 @@ select option {
   background-color: var(--second-bg-color);
   color: var(--main-color);
 }
+small {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
 
 #mainCanvas {
   display: none;
